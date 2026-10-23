@@ -17,3 +17,9 @@ describe("home page", () => {
     expect(html).toContain("No observations recorded.");
   });
 });
+
+describe("accessibility", () => {
+  it("names the input slider after the experiment variable", () => {
+    expect(renderToString(<Home />)).toContain('aria-label="exposure (hours)"');
+  });
+});
