@@ -1,16 +1,28 @@
-@import "tailwindcss";
+@import "./reader-shell.css";
 
-:root { --black: #111714; --panel: #19231e; --paper: #e9eee4; --muted: #9daa9c; --line: #405047; --lime: #c8e96a; --blue: #76c8d8; --orange: #f49b62; }
-* { box-sizing: border-box; }
-html { background: var(--black); }
-body { margin: 0; background: var(--black); color: var(--paper); font-family: "Avenir Next", "Helvetica Neue", sans-serif; }
-button, input { font: inherit; }
-button { cursor: pointer; }
-button:focus-visible, input:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
-::selection { background: var(--lime); color: var(--black); }
-.bench-page { min-height: 100vh; background: radial-gradient(circle at 80% 0, #263b2e 0, var(--black) 35%); padding: 23px 20px 32px; }.bench-shell { width: min(1220px, 100%); margin: auto; }.bench-header, .bench-footer, .bench-brand, .section-label, .panel-top, .control-ends { display: flex; align-items: center; justify-content: space-between; gap: 18px; }.bench-header, .bench-footer, .bench-brand, .section-label, .panel-top, .control-ends { color: var(--muted); font: 10px "Courier New", monospace; letter-spacing: .12em; text-transform: uppercase; }.bench-header { min-height: 48px; border-bottom: 1px solid var(--line); }.bench-brand { color: var(--paper); font-weight: 700; }.bench-mark { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid var(--lime); color: var(--lime); }.bench-status { color: var(--orange); }
-.bench-hero { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 65px; align-items: end; padding: 97px 0 83px; border-bottom: 1px solid var(--line); }.bench-kicker { margin: 0 0 18px; color: var(--lime); font: 10px "Courier New", monospace; letter-spacing: .14em; text-transform: uppercase; }.bench-hero h1 { margin: 0; font: 400 clamp(4.2rem, 10vw, 9rem)/.78 Georgia, serif; letter-spacing: -.1em; }.bench-hero h1 em { color: var(--lime); font-style: italic; }.bench-deck { max-width: 520px; margin: 31px 0 0; color: var(--muted); font: 17px/1.6 Georgia, serif; }.bench-result { display: grid; gap: 10px; border-top: 1px solid var(--lime); padding: 15px 0 10px; color: var(--muted); font: 10px "Courier New", monospace; letter-spacing: .1em; text-transform: uppercase; }.bench-result strong { color: var(--paper); font: 34px "Courier New", monospace; letter-spacing: -.08em; }.bench-result small { line-height: 1.5; text-transform: none; }
-.experiment-tabs { padding: 34px 0 0; }.section-label { align-items: baseline; margin-bottom: 14px; }.section-label span:first-child { color: var(--lime); }.experiment-tab { display: inline-grid; grid-template-columns: 13px 1fr; gap: 0 12px; width: 32.5%; min-height: 76px; border: 0; border-top: 1px solid var(--line); background: transparent; color: var(--paper); padding: 15px 13px; text-align: left; }.experiment-tab:hover, .experiment-tab.is-active { background: rgba(200,233,106,.1); }.experiment-tab i { grid-row: 1 / span 2; width: 10px; height: 10px; margin-top: 3px; border-radius: 50%; }.experiment-tab span { font-size: 15px; }.experiment-tab small { margin-top: 7px; color: var(--muted); font: 10px "Courier New", monospace; }
-.bench-workspace { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: 31px; padding: 34px 0 73px; }.bench-panel { background: var(--panel); border: 1px solid var(--line); padding: 24px 27px; }.panel-top { border-bottom: 1px solid var(--line); padding-bottom: 15px; }.panel-top b { color: var(--lime); font-weight: 400; }.chart { position: relative; height: 310px; margin-top: 23px; background: #121b17; }.chart svg { width: 100%; height: 100%; }.chart line { stroke: var(--line); stroke-dasharray: 3 7; }.chart polyline { fill: none; stroke-width: 2.4; vector-effect: non-scaling-stroke; }.axis-x, .axis-y { position: absolute; color: var(--muted); font: 9px "Courier New", monospace; letter-spacing: .1em; }.axis-x { right: 12px; bottom: 10px; }.axis-y { top: 12px; left: 12px; }.bench-note { max-width: 530px; margin: 20px 0 0; color: var(--muted); font: 16px/1.5 Georgia, serif; }.control-panel { align-self: start; border-top: 2px solid var(--paper); padding-top: 18px; }.control-panel > span, .bench-log > span { display: block; color: var(--lime); font: 10px "Courier New", monospace; letter-spacing: .12em; text-transform: uppercase; }.control-panel > strong { display: block; margin: 18px 0 26px; font: 30px "Courier New", monospace; letter-spacing: -.08em; }.control-panel input { width: 100%; }.control-ends { margin-top: 8px; }.control-panel > button { margin-top: 29px; border: 1px solid var(--lime); padding: 12px 15px; background: var(--lime); color: var(--black); font: 11px "Courier New", monospace; text-transform: uppercase; }.bench-log { margin-top: 43px; border-top: 1px solid var(--line); padding-top: 17px; }.bench-log > small { display: block; margin-top: 20px; color: var(--muted); font: 12px "Courier New", monospace; }.bench-log p { margin: 16px 0 0; border-bottom: 1px solid var(--line); padding-bottom: 13px; color: var(--paper); font: 11px "Courier New", monospace; }.bench-footer { border-top: 1px solid var(--line); padding-top: 18px; }
-@media (max-width: 800px) { .bench-hero, .bench-workspace { display: block; }.bench-result { width: 200px; margin: 48px 0 0 auto; }.bench-panel { margin-bottom: 40px; }.experiment-tab { width: 100%; }.experiment-tab + .experiment-tab { border-top: 0; } }
-@media (max-width: 560px) { .bench-page { padding-inline: 16px; }.bench-header > span:nth-child(2) { display: none; }.bench-hero { padding: 70px 0 58px; }.bench-hero h1 { font-size: clamp(4rem, 19vw, 6rem); }.bench-panel { padding: 20px 14px; }.chart { height: 240px; }.bench-footer { display: grid; gap: 8px; } }
+html, body { margin: 0; background: var(--rs-bg); }
+
+/* Site additions: experiment chips, the bench card (readout, curve, slider) and the log. */
+.site-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.site-chips .rs-chip small { opacity: 1; }
+.bench-card { display: grid; gap: 16px; max-width: 760px; padding: 24px; border: 1px solid var(--rs-line); border-radius: 18px; background: var(--rs-surface); }
+.bench-card h3 { margin: 0; font-size: 20px; font-weight: 600; }
+.bench-label { margin: 0; color: var(--rs-muted); font-size: 14px; font-weight: 600; }
+.bench-readout { margin: 0; font-size: clamp(32px, 6vw, 44px); font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.bench-chart { position: relative; padding: 8px 0 24px 0; border-bottom: 1px solid var(--rs-field-line); }
+.bench-chart svg { display: block; width: 100%; height: 200px; }
+.bench-chart line { stroke: var(--rs-line); stroke-dasharray: 3 7; vector-effect: non-scaling-stroke; }
+.bench-chart polyline { fill: none; stroke: var(--rs-accent); stroke-width: 3; vector-effect: non-scaling-stroke; }
+.bench-axes { display: flex; justify-content: space-between; margin: 6px 0 0; color: var(--rs-muted); font-size: 13px; }
+.bench-card p.bench-note { margin: 0; max-width: var(--rs-measure); font-size: 16px; line-height: var(--rs-leading); }
+.bench-slider { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+.bench-slider input { width: 100%; height: 44px; margin: 0; accent-color: var(--rs-button); cursor: pointer; }
+.bench-ends { display: flex; justify-content: space-between; color: var(--rs-muted); font-size: 13px; font-weight: 400; }
+.bench-log { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; max-width: 760px; }
+.bench-log li { padding: 12px 0; font-size: 16px; font-variant-numeric: tabular-nums; }
+.bench-log li + li { border-top: 1px solid var(--rs-line); }
+.rs-empty h3 { margin: 0; color: var(--rs-fg); font-size: 19px; font-weight: 600; }
+.bench-card .rs-actions { margin-top: 0; }
+@media (max-width: 640px) { .bench-card { padding: 16px; } }
+@media (forced-colors: active) { .bench-chart polyline { stroke: CanvasText; } }
+.bench-log-section .rs-empty { max-width: 760px; }

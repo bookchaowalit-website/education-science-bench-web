@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { curvePoints, experiments, findExperiment, LOG_LIMIT, observationText, recordObservation, SLIDER_MAX, SLIDER_MIN, type Observation } from "@/lib/science-bench";
+import { curvePoints, formatValue, experiments, findExperiment, LOG_LIMIT, observationText, recordObservation, SLIDER_MAX, SLIDER_MIN, type Observation } from "@/lib/science-bench";
 
 const ys = (points: string) => points.split(" ").map((pair) => Number(pair.split(",")[1]));
 
@@ -39,17 +39,25 @@ describe("curvePoints", () => {
 describe("bench log", () => {
   const light = experiments[0];
   it("writes the experiment, value and unit", () => {
-    expect(observationText(light, 8)).toBe("Light / leaf / 8hours");
+    expect(observationText(light, 8)).toBe("Light / leaf / 8 hours");
   });
   it("puts the newest observation first and keeps only the last four", () => {
     let log: Observation[] = [];
     for (let v = 1; v <= 6; v++) log = recordObservation(log, light, v);
     expect(log).toHaveLength(LOG_LIMIT);
-    expect(log.map((o) => o.text)).toEqual(["Light / leaf / 6hours", "Light / leaf / 5hours", "Light / leaf / 4hours", "Light / leaf / 3hours"]);
+    expect(log.map((o) => o.text)).toEqual(["Light / leaf / 6 hours", "Light / leaf / 5 hours", "Light / leaf / 4 hours", "Light / leaf / 3 hours"]);
   });
   it("gives each observation a unique id, also when the same value is recorded twice or the log is full", () => {
     let log: Observation[] = [];
     for (let i = 0; i < 7; i++) log = recordObservation(log, light, 8);
     expect(new Set(log.map((o) => o.id)).size).toBe(log.length);
+  });
+});
+
+describe("formatValue", () => {
+  it("spaces unit words and symbols, but not a percent sign", () => {
+    expect(formatValue(8, "hours")).toBe("8 hours");
+    expect(formatValue(31, "°C")).toBe("31 °C");
+    expect(formatValue(54, "%")).toBe("54%");
   });
 });

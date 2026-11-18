@@ -27,8 +27,13 @@ export function curvePoints(value: number): string {
   }).join(" ");
 }
 
+/** "8 hours", "31 °C", "54%": one space before a unit word or symbol, none before a percent sign. */
+export function formatValue(value: number, unit: string): string {
+  return unit === "%" ? `${value}%` : `${value} ${unit}`;
+}
+
 export function observationText(experiment: Experiment, value: number): string {
-  return experiment.name + " / " + value + experiment.unit;
+  return `${experiment.name} / ${formatValue(value, experiment.unit)}`;
 }
 
 /** Newest observation first, keeping at most LOG_LIMIT entries. */
